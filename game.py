@@ -31,13 +31,14 @@ interface_Image = PhotoImage(file="img/bg_Img1.png")
 bg_Image =PhotoImage(file="img/interface.png")
 hero_Image = PhotoImage(file="img/Hero Player .png")
 heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
-bonla = PhotoImage(file="img/bonla.png")
+bonla = PhotoImage(file="img/bonla-removebg.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
 wall = PhotoImage(file="img/wall.PNG")
 iland = PhotoImage(file="img/iland.png")
 land2 = PhotoImage(file="img/land2.png")
 trees = PhotoImage(file="img/tree.png")
+trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
 
 
@@ -78,7 +79,11 @@ def startGame():
     canvas.create_image(550, 350, image=iland, tags="PLATFORM" )
     canvas.create_image(900, 350, image=iland, tags="PLATFORM" )
 
-    home = canvas.create_image(1280,100, image=door )
+    home = canvas.create_image(1320,100, image=door )
+    x=1180
+    for i in range(3):
+        character1 = canvas.create_image(x,160, image=trees2, tags="PLATFORM")
+        x += trees2.width()
 
 
     canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
@@ -86,7 +91,7 @@ def startGame():
 
 
     x = 410
-    for i in range(10):
+    for i in range(25):
         denger = canvas.create_image(x, 640, image=bonla )
         x += bonla.width()
     
@@ -95,8 +100,8 @@ def startGame():
 
     x=0
     for i in range(12):
-        canvas.create_image(x, 680, image=wall, tags="PLATFORM" )
-        x += wall.width()
+        canvas.create_image(x, 680, image=wall2, tags="PLATFORM" )
+        x += wall2.width()
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
@@ -119,7 +124,7 @@ def startGame():
         if force > 0:
             if check_movement(0, -force):
                 canvas.move(player, 0, -force)
-                window.after(TIMED_LOOP, jump, force- 1)
+                window.after(TIMED_LOOP, jump, force- 2)
                 # winsound.PlaySound("sound\\jump.wav", winsound.SND_ASYNC | winsound.SND_ASYNC, tag="sound")
             
 
@@ -132,7 +137,6 @@ def startGame():
 
     def move():
         if not keyPressed == []:
-        
             x = 0
             if "Left" in keyPressed:
                 canvas.itemconfig(player, image=heroimg_left)
@@ -184,7 +188,22 @@ def startGame():
     character2 = canvas.create_rectangle(500, 250, 560, 270, fill="orange", tags="PLATFORM", outline = "" )
 
     # ________________lost condition___________________
+    # def lost():
+    #     # if canvas.coords(player) <= canvas.coords(bonla):
+    #         canvas.create_rectangle(220,200,1000,500,fill='white')
 
+    #         canvas.create_text(600,250,text="You Lost!",font="212BabyGirl 60 bold", fill="black")
+
+    #         # canvas.create_image(300,350,image=fruits)
+    #         canvas.create_text(400,350,text='score X ', font='212BabyGirl 25 bold',fill='black')
+    #         # canvas.create_text(480,350,text=score,font='212BabyGirl 30 bold',fill='red')
+
+    #         # canvas.create_image(700,350,image=heart)
+    #         canvas.create_text(790,350,text='Heart X ', font='212BabyGirl 25 bold',fill='black')
+    #         canvas.create_text(860,350,text='0',font='212BabyGirl 30 bold',fill='red')
+
+    #         canvas.create_text(900,450,text='Menu',font='212BabyGirl 30',fill='black',tags='ne')
+    #         lost()
 
 
 
