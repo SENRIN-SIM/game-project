@@ -41,6 +41,7 @@ trees = PhotoImage(file="img/tree.png")
 trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
 helping = PhotoImage(file="img/Help.PNG")
+ston = PhotoImage(file="img/apple.png")
 
 
 # ________________________interface_______________________
@@ -77,6 +78,24 @@ def exit(event):
     window.quit()
 canvas.tag_bind('exit','<Button-1>',exit)
 
+# __________________help pacg_____________________________
+
+def help():
+    canvas.create_image(600,320, image=bg_Image)
+    canvas.create_image(700,320, image=helping, anchor=CENTER)
+    winsound.PlaySound("sound\\help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+
+
+    def back_btn():
+        canvas.create_image(100,50,image=backclick, tags='bak')
+        canvas.create_text(100,50,text="Back", font='212BabyGirl 15 bold', fill='white', tags='bak')
+    back_btn()
+    def bakClick(event):
+        canvas.delete('all')
+        interface()
+    canvas.tag_bind('bak','<Button-1>',bakClick)
+
+
 # ________________start game__________________
 
 
@@ -100,6 +119,7 @@ def startGame():
 
 
     canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
+
     canvas.create_image(1270, 325, image=trees)
 
 
@@ -248,20 +268,6 @@ def startGame():
     window.bind("<KeyRelease>", stop_move)
 
     # _________________Help____________________-
-def help():
-    canvas.create_image(600,320, image=bg_Image)
-    canvas.create_image(700,320, image=helping, anchor=CENTER)
-    winsound.PlaySound("sound\\help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
-
-
-    def back_btn():
-        canvas.create_image(100,50,image=backclick, tags='bak')
-        canvas.create_text(100,50,text="Back", font='212BabyGirl 15 bold', fill='white', tags='bak')
-    back_btn()
-    def bakClick(event):
-        canvas.delete('all')
-        interface()
-    canvas.tag_bind('bak','<Button-1>',bakClick)
 
 
 
