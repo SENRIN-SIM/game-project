@@ -40,6 +40,7 @@ land2 = PhotoImage(file="img/land2.png")
 trees = PhotoImage(file="img/tree.png")
 trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
+help = PhotoImage(file="img/Help.PNG")
 
 
 # ________________________interface_______________________
@@ -63,6 +64,18 @@ def playGame(event):
     startGame()
 
 canvas.tag_bind('start','<Button-1>',playGame)
+
+# ________________________help_______________________
+def need_help(event):
+
+    canvas.delete('all')
+    help()
+canvas.tag_bind('help','<Button-1>',need_help)
+# ___________________________exit________________-_________
+def exit(event):
+
+    window.quit()
+canvas.tag_bind('exit','<Button-1>',exit)
 
 # ________________start game__________________
 
@@ -231,6 +244,10 @@ def startGame():
 
     window.bind("<Key>", start_move)
     window.bind("<KeyRelease>", stop_move)
+
+    # _________________Help____________________-
+def help():
+    canvas.create_image(600,320, image=help)
 
 
 
