@@ -40,7 +40,7 @@ land2 = PhotoImage(file="img/land2.png")
 trees = PhotoImage(file="img/tree.png")
 trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
-help = PhotoImage(file="img/Help.PNG")
+helping = PhotoImage(file="img/Help.PNG")
 
 
 # ________________________interface_______________________
@@ -137,8 +137,10 @@ def startGame():
         if force > 0:
             if check_movement(0, -force):
                 canvas.move(player, 0, -force)
-                window.after(TIMED_LOOP, jump, force- 2)
-                # winsound.PlaySound("sound\\jump.wav", winsound.SND_ASYNC | winsound.SND_ASYNC, tag="sound")
+                window.after(TIMED_LOOP, jump, force- 2.5)
+            
+                # def jumpsound():
+                #     winsound.PlaySound("sound/jump.wav", winsound.SND_ASYNC)
             
 
 
@@ -247,7 +249,10 @@ def startGame():
 
     # _________________Help____________________-
 def help():
-    canvas.create_image(600,320, image=help)
+    canvas.create_image(600,320, image=bg_Image)
+    canvas.create_image(700,320, image=helping, anchor=CENTER)
+    winsound.PlaySound("sound/help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC, tag="sound")
+
 
 
 
