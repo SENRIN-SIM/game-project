@@ -28,13 +28,13 @@ canvas.pack()
 # ___________________Image_________________________
 interface_Image = PhotoImage(file="img/interface.png")
 bg_Image =PhotoImage(file="img/MacBook_bg- 2.png")
-hero_Image = PhotoImage(file="img/hero player .png")
+hero_Image = PhotoImage(file="img/Hero Player .png")
 heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
 bonla = PhotoImage(file="img/bonla.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
 wall = PhotoImage(file="img/wall.PNG")
-land = PhotoImage(file="img/land.png")
+# land = PhotoImage(file="img/land.png")
 
 
 # ________________________interface_______________________
