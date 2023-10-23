@@ -34,7 +34,7 @@ bonla = PhotoImage(file="img/bonla.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
 wall = PhotoImage(file="img/wall.PNG")
-# land = PhotoImage(file="img/land.png")
+#  = PhotoImage(file="img/land.png")
 
 
 # ________________________interface_______________________
