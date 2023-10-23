@@ -27,7 +27,7 @@ frame.pack()
 canvas = Canvas(frame, width=app_width, height=app_height)
 canvas.pack()
 # ___________________Image_________________________
-interface_Image = PhotoImage(file="img/bg_img.png")
+interface_Image = PhotoImage(file="img/bg_Img1.png")
 bg_Image =PhotoImage(file="img/interface.png")
 hero_Image = PhotoImage(file="img/Hero Player .png")
 heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
@@ -87,7 +87,7 @@ def startGame():
 
     x = 410
     for i in range(10):
-        denger = canvas.create_image(x, 640, image=bonla, tags="PLATFORM" )
+        denger = canvas.create_image(x, 640, image=bonla )
         x += bonla.width()
     
 
@@ -119,7 +119,7 @@ def startGame():
         if force > 0:
             if check_movement(0, -force):
                 canvas.move(player, 0, -force)
-                window.after(TIMED_LOOP, jump, force- 3)
+                window.after(TIMED_LOOP, jump, force- 1)
                 # winsound.PlaySound("sound\\jump.wav", winsound.SND_ASYNC | winsound.SND_ASYNC, tag="sound")
             
 
@@ -132,6 +132,7 @@ def startGame():
 
     def move():
         if not keyPressed == []:
+        
             x = 0
             if "Left" in keyPressed:
                 canvas.itemconfig(player, image=heroimg_left)
@@ -184,24 +185,9 @@ def startGame():
 
     # ________________lost condition___________________
 
-    def Lost():
 
-        canvas.create_rectangle(220,200,1000,500,fill='white')
 
-        canvas.create_text(600,250,text="You Lost!",font="212BabyGirl 60 bold", fill="black")
 
-        # canvas.create_image(300,350,image=fruits)
-        canvas.create_text(400,350,text='score X ', font='212BabyGirl 25 bold',fill='black')
-        # canvas.create_text(480,350,text=score,font='212BabyGirl 30 bold',fill='red')
-
-        # canvas.create_image(700,350,image=heart)
-        canvas.create_text(790,350,text='Heart X ', font='212BabyGirl 25 bold',fill='black')
-        canvas.create_text(860,350,text='0',font='212BabyGirl 30 bold',fill='red')
-
-        canvas.create_text(900,450,text='Menu',font='212BabyGirl 30',fill='black',tags='ne')
-    
-        if player[3] <= denger[1]:
-            Lost()
 
 # __________________click to back_______________________
     def back_btn():
