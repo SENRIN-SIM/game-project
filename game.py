@@ -16,6 +16,7 @@ keyPressed = []
 window = Tk()
 window.title("Sok")
 app_width = window.winfo_screenwidth()
+print(app_width)
 app_height = window.winfo_screenheight()
 
 window.geometry(f'{app_width}x{app_height}')
@@ -26,15 +27,18 @@ frame.pack()
 canvas = Canvas(frame, width=app_width, height=app_height)
 canvas.pack()
 # ___________________Image_________________________
-interface_Image = PhotoImage(file="img/interface.png")
-bg_Image =PhotoImage(file="img/MacBook_bg- 2.png")
+interface_Image = PhotoImage(file="img/bg_img.png")
+bg_Image =PhotoImage(file="img/interface.png")
 hero_Image = PhotoImage(file="img/Hero Player .png")
 heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
 bonla = PhotoImage(file="img/bonla.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
 wall = PhotoImage(file="img/wall.PNG")
-#  = PhotoImage(file="img/land.png")
+iland = PhotoImage(file="img/iland.png")
+land2 = PhotoImage(file="img/land2.png")
+trees = PhotoImage(file="img/tree.png")
+wall2 = PhotoImage(file="img/wall2.png")
 
 
 # ________________________interface_______________________
@@ -44,11 +48,11 @@ def interface():
     canvas.create_image(600,320,image=interface_Image)
     winsound.PlaySound("sound\\mixkit-game-level-completed-2059.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
-    canvas.create_text(650,250,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='black', tags='start')
+    canvas.create_text(650,250,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='white', tags='start')
 
-    canvas.create_text(650,350,text="HELP",font=('212BabyGirl', 60 ,'bold'),fill='black',tags='help')
+    canvas.create_text(650,350,text="HELP",font=('212BabyGirl', 60 ,'bold'),fill='white',tags='help')
 
-    canvas.create_text(650,450,text="EXIT",font=('212BabyGirl', 60 ,'bold'),fill='black',tags='exit')
+    canvas.create_text(650,450,text="EXIT",font=('212BabyGirl', 60 ,'bold'),fill='white',tags='exit')
 
 interface()
 # _____________________Show Level________________
@@ -65,38 +69,34 @@ canvas.tag_bind('start','<Button-1>',playGame)
 def startGame():
     canvas.create_image(600,320, image=bg_Image)
     
-    canvas.create_rectangle(160, 600, 240, 700, fill="coral", tags="PLATFORM", outline = "" )
-    canvas.create_rectangle(240, 510, 360, 530, fill="green", tags="PLATFORM", outline = "" )
-    canvas.create_rectangle(240, 530, 360, 650, fill="coral", tags="PLATFORM", outline = "" )
+    x = 170
+    for i in range(2):
+        canvas.create_image(x,580, image=wall2, tags="PLATFORM")
+        x += wall.width()
+    canvas.create_image(330,480, image=wall2, tags="PLATFORM")
+
+    canvas.create_image(550, 350, image=iland, tags="PLATFORM" )
+    canvas.create_image(900, 350, image=iland, tags="PLATFORM" )
+
+    home = canvas.create_image(1280,100, image=door )
 
 
-    # canvas.create_rectangle(500, 350, 600, 400, fill="coral", tags="PLATFORM", outline = "" )
-    # canvas.create_rectangle(500, 330, 600, 350, fill="green", tags="PLATFORM", outline = "" )
-    canvas.create_image(550, 380, image=wall, tags="PLATFORM" )
-    canvas.create_rectangle(490, 330, 610, 350, fill="green", tags="PLATFORM", outline = "" )
+    canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
+    canvas.create_image(1270, 325, image=trees)
 
-    # canvas.create_rectangle(890, 350, 1000, 400, fill="coral", tags="PLATFORM", outline = "" )
-    canvas.create_image(940, 380, image=wall, tags="PLATFORM" )
-    canvas.create_rectangle(880, 330, 1000, 350, fill="green", tags="PLATFORM", outline = "" )
-    # =========
-    canvas.create_rectangle(160, 580, 270, 600, fill="green", tags="PLATFORM", outline = "" )
 
-    home = canvas.create_image(1280,360, image=door )
-
-    canvas.create_rectangle(1160,400, 1400, 750, fill="coral", tags="PLATFORM", outline = "" )
-    # canvas.create_rectangle(360, 620, 1150, 650, fill="green", tags="PLATFORM", outline = "" )
     x = 410
-    for i in range(8):
+    for i in range(10):
         denger = canvas.create_image(x, 640, image=bonla, tags="PLATFORM" )
         x += bonla.width()
+    
 
-    # canvas.create_rectangle(0, 0, 40, 700, fill="coral", tags="PLATFORM", outline = "orange" )
-    # canvas.create_rectangle(0, 650, 1160, 700, fill="brown", tags="PLATFORM", outline = "" )
+# ===========/
+
     x=0
     for i in range(12):
         canvas.create_image(x, 680, image=wall, tags="PLATFORM" )
         x += wall.width()
-    canvas.create_rectangle(0, 630, 360, 650, fill="green", tags="PLATFORM", outline = "" )
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
@@ -178,9 +178,9 @@ def startGame():
 
 
     # Create characters as rectangles on the canvas
-    character1 = canvas.create_rectangle(850, 300, 910, 320, fill="orange", tags="PLATFORM", outline = "" )
+    character1 = canvas.create_rectangle(850, 250, 910, 270, fill="orange", tags="PLATFORM", outline = "" )
 
-    character2 = canvas.create_rectangle(500, 300, 560, 320, fill="orange", tags="PLATFORM", outline = "" )
+    character2 = canvas.create_rectangle(500, 250, 560, 270, fill="orange", tags="PLATFORM", outline = "" )
 
     # ________________lost condition___________________
 
