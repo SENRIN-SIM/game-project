@@ -251,8 +251,17 @@ def startGame():
 def help():
     canvas.create_image(600,320, image=bg_Image)
     canvas.create_image(700,320, image=helping, anchor=CENTER)
-    winsound.PlaySound("sound/help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC, tag="sound")
+    winsound.PlaySound("sound\\help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
+
+    def back_btn():
+        canvas.create_image(100,50,image=backclick, tags='bak')
+        canvas.create_text(100,50,text="Back", font='212BabyGirl 15 bold', fill='white', tags='bak')
+    back_btn()
+    def bakClick(event):
+        canvas.delete('all')
+        interface()
+    canvas.tag_bind('bak','<Button-1>',bakClick)
 
 
 
