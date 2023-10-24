@@ -43,6 +43,7 @@ trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
 helping = PhotoImage(file="img/Help.PNG")
 komnop = PhotoImage(file="img/beer.png")
+button = PhotoImage(file="img/button_image-removebg-preview.png")
 
 
 # ________________________interface_______________________
@@ -53,10 +54,13 @@ def interface():
     winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
     canvas.create_text(350,550,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='green', tags='start')
+    canvas.create_text(350,550,image=button, tags='start')
 
     canvas.create_text(650,550,text="HELP",font=('212BabyGirl', 60 ,'bold'),fill='green',tags='help')
+    canvas.create_text(650,550,image=button, tags='start')
 
     canvas.create_text(950,550,text="EXIT",font=('212BabyGirl', 60 ,'bold'),fill='green',tags='exit')
+    canvas.create_text(950,550,image=button, tags='start')
 
 interface()
 # _____________________Show Level________________
