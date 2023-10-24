@@ -41,7 +41,7 @@ trees = PhotoImage(file="img/tree.png")
 trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
 helping = PhotoImage(file="img/Help.PNG")
-ston = PhotoImage(file="img/apple.png")
+komnop = PhotoImage(file="img/beer.png")
 
 
 # ________________________interface_______________________
@@ -49,7 +49,7 @@ ston = PhotoImage(file="img/apple.png")
 def interface():
 
     canvas.create_image(600,320,image=interface_Image)
-    winsound.PlaySound("sound\\mixkit-game-level-completed-2059.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+    winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
     canvas.create_text(650,250,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='white', tags='start')
 
@@ -95,16 +95,20 @@ def help():
         interface()
     canvas.tag_bind('bak','<Button-1>',bakClick)
 
+# __________________sound_______________________
 
+def jumpsound():
+     winsound.PlaySound("sound\\jump.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+def walksound():
+     winsound.PlaySound("sound\\walk.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 # ________________start game__________________
-
 
 def startGame():
     canvas.create_image(600,320, image=bg_Image)
     
     x = 170
     for i in range(2):
-        canvas.create_image(x,580, image=wall2, tags="PLATFORM")
+        canvas.create_image(x,590, image=wall2, tags="PLATFORM")
         x += wall.width()
     canvas.create_image(330,480, image=wall2, tags="PLATFORM")
 
@@ -119,8 +123,8 @@ def startGame():
 
 
     canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
-
     canvas.create_image(1270, 325, image=trees)
+    canvas.create_image(1290,360, image=komnop)
 
 
     x = 410
@@ -130,6 +134,7 @@ def startGame():
     
 
 # ===========/
+    
 
     x=0
     for i in range(12):
@@ -157,10 +162,9 @@ def startGame():
         if force > 0:
             if check_movement(0, -force):
                 canvas.move(player, 0, -force)
-                window.after(TIMED_LOOP, jump, force- 2.5)
+            window.after(TIMED_LOOP, jump, force- 2.5)
             
-                # def jumpsound():
-                #     winsound.PlaySound("sound/jump.wav", winsound.SND_ASYNC)
+                
             
 
 
@@ -174,13 +178,16 @@ def startGame():
         if not keyPressed == []:
             x = 0
             if "Left" in keyPressed:
+                
                 canvas.itemconfig(player, image=heroimg_left)
                 x -= SPEED
+                walksound()
             if "Right" in keyPressed:
                 canvas.itemconfig(player, image=hero_Image)
                 x += SPEED
             if "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
                 jump(JUMP_FORCE)
+                jumpsound()
             if check_movement(x):
                 canvas.move(player, x, 0)
                 window.after(TIMED_LOOP, move)
