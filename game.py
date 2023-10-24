@@ -30,10 +30,10 @@ canvas.pack()
 # ___________________Image_________________________
 interface_Image = PhotoImage(file="img/bg_Img1.png")
 bg_Image =PhotoImage(file="img/interface.png")
-# hero_Image = PhotoImage(file="img/Hero Player .png")
-# heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
-hero_Image = PhotoImage(file="img/hero_right.png")
-heroimg_left = PhotoImage(file="img/hero_left.png")
+hero_Image = PhotoImage(file="img/Hero Player .png")
+heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
+# hero_Image = PhotoImage(file="img/hero_right.png")
+# heroimg_left = PhotoImage(file="img/hero_left.png")
 bonla = PhotoImage(file="img/bonla-removebg.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
@@ -94,7 +94,7 @@ canvas.tag_bind('exit','<Button-1>',exit)
 
 def help():
     # canvas.create_image(600,320, image=bg_Image)
-    canvas.create_image(700,320, image=helping, anchor=ce)
+    canvas.create_image(700,320, image=helping, anchor=CENTER)
     winsound.PlaySound("sound\\help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 # ____________________click_back_________________
     def back_btn():
