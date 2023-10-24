@@ -30,8 +30,10 @@ canvas.pack()
 # ___________________Image_________________________
 interface_Image = PhotoImage(file="img/bg_Img1.png")
 bg_Image =PhotoImage(file="img/interface.png")
-hero_Image = PhotoImage(file="img/Hero Player .png")
-heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
+# hero_Image = PhotoImage(file="img/Hero Player .png")
+# heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
+hero_Image = PhotoImage(file="img/hero_right.png")
+heroimg_left = PhotoImage(file="img/hero_left.png")
 bonla = PhotoImage(file="img/bonla-removebg.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
@@ -41,9 +43,10 @@ land2 = PhotoImage(file="img/land2.png")
 trees = PhotoImage(file="img/tree.png")
 trees2 = PhotoImage(file="img/chers.png")
 wall2 = PhotoImage(file="img/wall2.png")
-helping = PhotoImage(file="img/Help.PNG")
+helping = PhotoImage(file="img/helpp 3.png")
 komnop = PhotoImage(file="img/beer.png")
-button = PhotoImage(file="img/button_image-removebg-preview.png")
+button = PhotoImage(file="img/button-removebg-preview.png")
+leve_image = PhotoImage(file="img/next_level_img.png")
 
 
 # ________________________interface_______________________
@@ -53,21 +56,23 @@ def interface():
     canvas.create_image(600,320,image=interface_Image)
     winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
-    canvas.create_text(350,550,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='green', tags='start')
-    canvas.create_text(350,550,image=button, tags='start')
+    canvas.create_image(300,550,image=button, tags='start')
+    canvas.create_text(300,550,text="GAME",font=('212BabyGirl', 50 ,'bold'),fill='white', tags='start')
 
-    canvas.create_text(650,550,text="HELP",font=('212BabyGirl', 60 ,'bold'),fill='green',tags='help')
-    canvas.create_text(650,550,image=button, tags='start')
+    canvas.create_image(650,550,image=button, tags='start')
+    canvas.create_text(650,550,text="HELP",font=('212BabyGirl', 50 ,'bold'),fill='white',tags='help')
 
-    canvas.create_text(950,550,text="EXIT",font=('212BabyGirl', 60 ,'bold'),fill='green',tags='exit')
-    canvas.create_text(950,550,image=button, tags='start')
+    canvas.create_image(1000,550,image=button, tags='start')
+    canvas.create_text(1000,550,text="EXIT",font=('212BabyGirl', 50 ,'bold'),fill='white',tags='exit')
 
+   
 interface()
 # _____________________Show Level________________
 def playGame(event):
 
     canvas.delete('all')
     startGame()
+    click_sound()
 
 canvas.tag_bind('start','<Button-1>',playGame)
 
@@ -76,21 +81,22 @@ def need_help(event):
 
     canvas.delete('all')
     help()
+    click_sound()
 canvas.tag_bind('help','<Button-1>',need_help)
 # ___________________________exit________________-_________
 def exit(event):
 
     window.quit()
+    click_sound()
 canvas.tag_bind('exit','<Button-1>',exit)
 
 # __________________help pacg_____________________________
 
 def help():
-    canvas.create_image(600,320, image=bg_Image)
-    canvas.create_image(700,320, image=helping, anchor=CENTER)
+    # canvas.create_image(600,320, image=bg_Image)
+    canvas.create_image(700,320, image=helping, anchor=ce)
     winsound.PlaySound("sound\\help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
-
-
+# ____________________click_back_________________
     def back_btn():
         canvas.create_image(100,50,image=backclick, tags='bak')
         canvas.create_text(100,50,text="Back", font='212BabyGirl 15 bold', fill='white', tags='bak')
@@ -106,6 +112,13 @@ def jumpsound():
      winsound.PlaySound("sound\\jump.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 def walksound():
      winsound.PlaySound("sound\\walk.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+def win_sond():
+     winsound.PlaySound("sound/mixkit-game-level-completed-2059.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+def lost_sond():
+     winsound.PlaySound("sound/help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+def click_sound():
+     winsound.PlaySound("sound/walk.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+    
 # ________________start game__________________
 
 def startGame():
@@ -131,6 +144,11 @@ def startGame():
     canvas.create_image(1270, 325, image=trees)
     beers = canvas.create_image(1290,360, image=komnop, tags="beer")
 
+    # Create characters as rectangles on the canvas
+    character1 = canvas.create_rectangle(850, 250, 910, 270, fill="orange", tags="PLATFORM", outline = "" )
+
+    character2 = canvas.create_rectangle(500, 250, 560, 270, fill="orange", tags="PLATFORM", outline = "" )
+
 
     x = 410
     for i in range(25):
@@ -146,6 +164,7 @@ def startGame():
         canvas.create_image(x, 680, image=wall2, tags="PLATFORM" )
         x += wall2.width()
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
+
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
         coord = canvas.coords(player)
@@ -171,6 +190,7 @@ def startGame():
         for plf in wonner:
             if plf in overlap:
                 check_winner()
+                win_sond()
         # for plf in wonner:
         #     if plf in overlap:
         #         return False
@@ -181,6 +201,7 @@ def startGame():
         for plf in loser:
             if plf in overlap:
                 check_loster()
+                lost_sond()
 
         for platform in platforms:
             if platform in overlap:
@@ -198,17 +219,30 @@ def startGame():
         return True
     # _______________winner1______________
     def check_winner():
-        canvas.create_text(600, 100, text="YOU WON! BRO", font=("Ink free", 70))
-        canvas.create_text(600, 150, text="NEXT-LEVEL", font=("Ink free", 70), tags="level_2")
+        
+        canvas.create_image(0,0,image=leve_image,anchor=NW)
+        # canvas.create_text(600, 500, text="YOU WON! BRO", font=("Ink free", 70),)
+        canvas.create_text(220,300,text="YOU WON!",font=('212BabyGirl', 50 ,'bold'),fill='white')
+        canvas.create_text(250, 450, text="NEXT-LEVEL", font=('212BabyGirl', 50 ,'bold'),fill='white', tags="level_2")
     # ________________go to next_level__________________
     def next_level(event):
         canvas.delete('all')
         startGame_2()
+        click_sound()
     canvas.tag_bind('level_2','<Button-1>',next_level)
+    # ___________________play again_________________
+    def play_again(event):
+        canvas.delete('all')
+        startGame()
+        click_sound()
+    canvas.tag_bind('try','<Button-1>',play_again)
         
-    # _________________lost2_________________
+    # _________________lost_________________
     def check_loster():
-        canvas.create_text(600, 100, text="K.O!", font=("Ink free", 70))
+        # canvas.create_text(600, 100, text="K.O!", font=("Ink free", 70))
+        canvas.create_image(0,0,image=leve_image,anchor=NW)
+        canvas.create_text(220,300,text="YOU LOST!",font=('212BabyGirl', 50 ,'bold'),fill='white')
+        canvas.create_text(250, 450, text="TRY AGAIN?", font=('212BabyGirl', 50 ,'bold'),fill='white', tags="try")
 
     # _______________get beer3____________________
     def drink_beer():
@@ -271,7 +305,7 @@ def startGame():
         # Check if characters have moved beyond the canvas boundaries
         if char1_coords[2] > app_width:
             canvas.move(character1, -app_width, 0)
-        if char2_coords[0] < 0:
+        if char2_coords[0]< 0:
             canvas.move(character2, app_width, 0)
 
         # Scroll the canvas to keep characters in view
@@ -279,13 +313,6 @@ def startGame():
 
         # Schedule the next character movement
         canvas.after(100, move_characters)  # Adjust the delay as needed
-
-
-    # Create characters as rectangles on the canvas
-    character1 = canvas.create_rectangle(850, 250, 910, 270, fill="orange", tags="PLATFORM", outline = "" )
-
-    character2 = canvas.create_rectangle(500, 250, 560, 270, fill="orange", tags="PLATFORM", outline = "" )
-
 
 
 
@@ -298,6 +325,7 @@ def startGame():
     def bakClick(event):
         canvas.delete('all')
         interface()
+        click_sound()
     canvas.tag_bind('bak','<Button-1>',bakClick)
 
 
@@ -315,7 +343,8 @@ def startGame():
     window.bind("<Key>", start_move)
     window.bind("<KeyRelease>", stop_move)
 
-    # _________________Help____________________-
+
+# __________________click to back_______________________
 
 def startGame_2():
     canvas.create_image(600,320, image=bg_Image)
