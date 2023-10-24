@@ -54,7 +54,7 @@ leve_image = PhotoImage(file="img/next_level_img.png")
 def interface():
 
     canvas.create_image(600,320,image=interface_Image)
-    winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+    winsound.PlaySound("sound\\mixkit-game-level-completed-2059.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
     canvas.create_image(300,550,image=button, tags='start')
     canvas.create_text(300,550,text="GAME",font=('212BabyGirl', 50 ,'bold'),fill='white', tags='start')
@@ -113,11 +113,11 @@ def jumpsound():
 def walksound():
      winsound.PlaySound("sound\\walk.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 def win_sond():
-     winsound.PlaySound("sound/mixkit-game-level-completed-2059.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+     winsound.PlaySound("sound\\mixkit-game-level-completed-2059.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 def lost_sond():
-     winsound.PlaySound("sound/help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+     winsound.PlaySound("sound\\help.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 def click_sound():
-     winsound.PlaySound("sound/walk.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+     winsound.PlaySound("sound\\walk.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
     
 # ________________start game__________________
 
@@ -191,9 +191,10 @@ def startGame():
             if plf in overlap:
                 check_winner()
                 win_sond()
-        # for plf in wonner:
-        #     if plf in overlap:
-        #         return False
+                # winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+        for plf in wonner:
+            if plf in overlap:
+                return False
         for platform in platforms:
             if platform in overlap:
                 return False
