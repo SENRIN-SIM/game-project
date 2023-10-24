@@ -10,6 +10,7 @@ GRAVITY_FORCE = 9
 
 TIMED_LOOP = 10
 MOVE_INCREMENT = 10
+COUNT_DRINK =1
 
 keyPressed = []
 
@@ -51,11 +52,11 @@ def interface():
     canvas.create_image(600,320,image=interface_Image)
     winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
 
-    canvas.create_text(650,250,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='white', tags='start')
+    canvas.create_text(350,550,text="GAME",font=('212BabyGirl', 60 ,'bold'),fill='green', tags='start')
 
-    canvas.create_text(650,350,text="HELP",font=('212BabyGirl', 60 ,'bold'),fill='white',tags='help')
+    canvas.create_text(650,550,text="HELP",font=('212BabyGirl', 60 ,'bold'),fill='green',tags='help')
 
-    canvas.create_text(650,450,text="EXIT",font=('212BabyGirl', 60 ,'bold'),fill='white',tags='exit')
+    canvas.create_text(950,550,text="EXIT",font=('212BabyGirl', 60 ,'bold'),fill='green',tags='exit')
 
 interface()
 # _____________________Show Level________________
@@ -115,7 +116,7 @@ def startGame():
     canvas.create_image(550, 350, image=iland, tags="PLATFORM" )
     canvas.create_image(900, 350, image=iland, tags="PLATFORM" )
 
-    home = canvas.create_image(1320,100, image=door )
+    home = canvas.create_image(1320,100, image=door, tags="won" )
     x=1180
     for i in range(3):
         character1 = canvas.create_image(x,160, image=trees2, tags="PLATFORM")
@@ -124,12 +125,12 @@ def startGame():
 
     canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
     canvas.create_image(1270, 325, image=trees)
-    canvas.create_image(1290,360, image=komnop)
+    beers = canvas.create_image(1290,360, image=komnop, tags="beer")
 
 
     x = 410
     for i in range(25):
-        denger = canvas.create_image(x, 640, image=bonla )
+        denger = canvas.create_image(x, 640, image=bonla, tags="lost" )
         x += bonla.width()
     
 
@@ -144,6 +145,7 @@ def startGame():
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
         coord = canvas.coords(player)
+
         platforms = canvas.find_withtag("PLATFORM")
         if coord[0] + direction_x < 1 or coord[0] + direction_x > app_width:
             return False
@@ -152,10 +154,57 @@ def startGame():
             overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] +hero_Image.width(), coord[1]+hero_Image.height())
         else:
             overlap = canvas.find_overlapping(coord[0], coord[1], coord[0]+direction_x, coord[1]+direction_y)
+
+
+        coord = canvas.coords(player)
+        coord = canvas.coords(denger)
+        coord = canvas.coords(beers)
+        platforms = canvas.find_withtag("PLATFORM")
+        wonner = canvas.find_withtag("won")
+        loser = canvas.find_withtag("lost")
+        drink = canvas.find_withtag("beer")
+        # ===============1
+        for plf in wonner:
+            if plf in overlap:
+                check_winner()
+        # for plf in wonner:
+        #     if plf in overlap:
+        #         return False
         for platform in platforms:
             if platform in overlap:
                 return False
+        # ========================2
+        for plf in loser:
+            if plf in overlap:
+                check_loster()
+
+        for platform in platforms:
+            if platform in overlap:
+                return False
+                
+        # ========================3
+        for plf in drink:
+            if plf in overlap:
+                drink_beer()    
+        for platform in platforms:
+            if platform in overlap:
+
+                return False
+        # =========================
         return True
+    # _______________winner1______________
+    def check_winner():
+        canvas.create_text(600, 100, text="YOU WON! BRO", font=("Ink free", 70))
+        count = count+1
+    # _________________lost2_________________
+    def check_loster():
+        canvas.create_text(600, 100, text="K.O!", font=("Ink free", 70))
+
+    # _______________get beer3____________________
+    def drink_beer():
+        canvas.itemconfig(beers,image=bonla)
+        
+
 # _______________jump_______________________
 
     def jump(force):
@@ -178,10 +227,8 @@ def startGame():
         if not keyPressed == []:
             x = 0
             if "Left" in keyPressed:
-                
                 canvas.itemconfig(player, image=heroimg_left)
                 x -= SPEED
-                walksound()
             if "Right" in keyPressed:
                 canvas.itemconfig(player, image=hero_Image)
                 x += SPEED
