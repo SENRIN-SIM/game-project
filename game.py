@@ -49,7 +49,7 @@ button = PhotoImage(file="img/button-removebg-preview.png")
 leve_image = PhotoImage(file="img/next_level_img.png")
 
 # __________________________Imagelevel2___________________________
-bg_Image2 =PhotoImage(file="imgGame2/bg_img.png")
+bg_Image2 =PhotoImage(file="imgGame2/bgimage2.png")
 dianond = PhotoImage(file="imgGame2/gold.png")
 kos = PhotoImage(file="imgGame2/floatgold.png")
 kos2 = PhotoImage(file="imgGame2/start.png")
@@ -57,7 +57,7 @@ daimon   = PhotoImage(file="imgGame2/gold.png")
 trees02 = PhotoImage(file="imgGame2/floatgold.png")
 iland_goal = PhotoImage(file="imgGame2/floatgold.png")
 bom = PhotoImage(file="imgGame2/bom.png")
-mott = PhotoImage(file="imgGame2/mott.png")
+mott = PhotoImage(file="imgGame2/icethorn.png")
 test = PhotoImage(file="imgGame2/test.png")
 
     
