@@ -29,20 +29,20 @@ canvas = Canvas(frame, width=app_width, height=app_height)
 canvas.pack()
 # ___________________Image_________________________
 interface_Image = PhotoImage(file="img/bg_Img1.png")
-bg_Image =PhotoImage(file="img/interface.png")
+bg_Image =PhotoImage(file="imgGame2/bg.png")
 hero_Image = PhotoImage(file="img/Hero Player .png")
 heroimg_left = PhotoImage(file="img/Hero_Player_left-removebg-preview.png")
 bonla = PhotoImage(file="img/bonla-removebg.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
-door = PhotoImage(file="img/doors 1.png")
-wall = PhotoImage(file="img/wall.PNG")
-iland = PhotoImage(file="img/iland.png")
+door = PhotoImage(file="imgGame2/gold.png")
+wall = PhotoImage(file="imgGame2/start.png")
+iland = PhotoImage(file="imgGame2/float.png")
 land2 = PhotoImage(file="img/land2.png")
 trees = PhotoImage(file="img/tree.png")
-trees2 = PhotoImage(file="img/chers.png")
-wall2 = PhotoImage(file="img/wall2.png")
-helping = PhotoImage(file="img/Help.PNG")
-komnop = PhotoImage(file="img/beer.png")
+trees2 = PhotoImage(file="imgGame2/floatgold.png")
+wall2 = PhotoImage(file="imgGame2/start.png")
+# helping = PhotoImage(file="img/Help.PNG")
+# komnop = PhotoImage(file="img/beer.png")
 # __________________sound_______________________
 
 def jumpsound():
@@ -79,24 +79,26 @@ def need_help(event):
 def startGame():
     canvas.create_image(600,320, image=bg_Image)
     
-    x = 170
-    for i in range(2):
-        canvas.create_image(x,590, image=wall2, tags="PLATFORM")
-        x += wall.width()
-    canvas.create_image(330,480, image=wall2, tags="PLATFORM")
+    # x = 170
+    # for i in range(2):
+    #     canvas.create_image(x,590, image=wall2, tags="PLATFORM")
+    #     x += wall2.width()
+    canvas.create_image(100,620, image=wall2, tags="PLATFORM")
 
-    canvas.create_image(550, 350, image=iland, tags="PLATFORM" )
-    canvas.create_image(900, 350, image=iland, tags="PLATFORM" )
+    canvas.create_image(340, 650, image=iland, tags="PLATFORM" )
+    canvas.create_image(530, 550, image=iland, tags="PLATFORM" )
+    canvas.create_image(730, 450, image=iland, tags="PLATFORM" )
+    canvas.create_image(930, 350, image=iland, tags="PLATFORM" )
 
-    home = canvas.create_image(1320,100, image=door, tags="won" )
-    x=1180
-    for i in range(3):
-        character1 = canvas.create_image(x,160, image=trees2, tags="PLATFORM")
-        x += trees2.width()
+    home = canvas.create_image(1275,150, image=door, tags="won" )
+    # x=1180
+    # for i in range(3):
+    character1 = canvas.create_image(1200,260, image=trees2, tags="PLATFORM")
+        # x += trees2.width()
 
 
-    canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
-    canvas.create_image(1270, 325, image=trees)
+    # canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
+    # canvas.create_image(1270, 325, image=trees)
     beers = canvas.create_image(1290,360, image=komnop, tags="beer")
 
 
