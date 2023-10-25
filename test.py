@@ -79,10 +79,6 @@ def need_help(event):
 def startGame():
     canvas.create_image(600,320, image=bg_Image)
     
-    # x = 170
-    # for i in range(2):
-    #     canvas.create_image(x,590, image=wall2, tags="PLATFORM")
-    #     x += wall2.width()
     canvas.create_image(100,620, image=wall2, tags="PLATFORM")
 
     canvas.create_image(340, 650, image=iland, tags="PLATFORM" )
@@ -91,15 +87,12 @@ def startGame():
     canvas.create_image(930, 350, image=iland, tags="PLATFORM" )
 
     home = canvas.create_image(1275,150, image=door, tags="won" )
-    # x=1180
-    # for i in range(3):
+
     character1 = canvas.create_image(1200,260, image=trees2, tags="PLATFORM")
-        # x += trees2.width()
 
 
-    # canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
-    # canvas.create_image(1270, 325, image=trees)
-    beers = canvas.create_image(1290,360, image=komnop, tags="beer")
+
+    # beers = canvas.create_image(1290,360, image=komnop, tags="beer")
 
 
     x = 410
@@ -111,10 +104,10 @@ def startGame():
 # ===========/
     
 
-    x=0
-    for i in range(12):
-        canvas.create_image(x, 680, image=wall2, tags="PLATFORM" )
-        x += wall2.width()
+    # x=0
+    # for i in range(12):
+    #     canvas.create_image(x, 680, image=wall2, tags="PLATFORM" )
+    #     x += wall2.width()
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
