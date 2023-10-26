@@ -41,8 +41,7 @@ land2 = PhotoImage(file="img/land2.png")
 trees = PhotoImage(file="img/tree.png")
 trees2 = PhotoImage(file="imgGame2/floatgold.png")
 wall2 = PhotoImage(file="imgGame2/start.png")
-# helping = PhotoImage(file="img/Help.PNG")
-# komnop = PhotoImage(file="img/beer.png")
+
 # __________________sound_______________________
 
 def jumpsound():
@@ -74,8 +73,6 @@ def need_help(event):
 
     canvas.delete
 
-
-
 def startGame():
     canvas.create_image(600,320, image=bg_Image)
     
@@ -90,11 +87,6 @@ def startGame():
 
     character1 = canvas.create_image(1200,260, image=trees2, tags="PLATFORM")
 
-
-
-    # beers = canvas.create_image(1290,360, image=komnop, tags="beer")
-
-
     x = 410
     for i in range(25):
         denger = canvas.create_image(x, 640, image=bonla, tags="lost" )
@@ -103,11 +95,6 @@ def startGame():
 
 # ===========/
     
-
-    # x=0
-    # for i in range(12):
-    #     canvas.create_image(x, 680, image=wall2, tags="PLATFORM" )
-    #     x += wall2.width()
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
@@ -122,10 +109,8 @@ def startGame():
         else:
             overlap = canvas.find_overlapping(coord[0], coord[1], coord[0]+direction_x, coord[1]+direction_y)
 
-
         coord = canvas.coords(player)
         coord = canvas.coords(denger)
-        coord = canvas.coords(beers)
         platforms = canvas.find_withtag("PLATFORM")
         wonner = canvas.find_withtag("won")
         loser = canvas.find_withtag("lost")
@@ -147,12 +132,7 @@ def startGame():
 
         for platform in platforms:
             if platform in overlap:
-                return False
-                
-        # ========================3
-        for plf in drink:
-            if plf in overlap:
-                drink_beer()    
+                return False 
         for platform in platforms:
             if platform in overlap:
 
@@ -165,12 +145,7 @@ def startGame():
         count = count+1
     # _________________lost2_________________
     def check_loster():
-        canvas.create_text(600, 100, text="K.O!", font=("Ink free", 70))
-
-    # _______________get beer3____________________
-    def drink_beer():
-        canvas.itemconfig(beers,image=bonla)
-        
+        canvas.create_text(600, 100, text="K.O!", font=("Ink free", 70))        
 
 # _______________jump_______________________
 
@@ -180,10 +155,6 @@ def startGame():
                 canvas.move(player, 0, -force)
             window.after(TIMED_LOOP, jump, force- 2.5)
             
-                
-            
-
-
     def start_move(event):
         if event.keysym not in keyPressed:
             keyPressed.append(event.keysym)
@@ -237,15 +208,10 @@ def startGame():
         # Schedule the next character movement
         canvas.after(100, move_characters)  # Adjust the delay as needed
 
-
     # Create characters as rectangles on the canvas
     character1 = canvas.create_rectangle(850, 250, 910, 270, fill="orange", tags="PLATFORM", outline = "" )
 
     character2 = canvas.create_rectangle(500, 250, 560, 270, fill="orange", tags="PLATFORM", outline = "" )
-
-
-
-
 
 # __________________click to back_______________________
     def back_btn():
@@ -257,22 +223,14 @@ def startGame():
         # interface()
     canvas.tag_bind('bak','<Button-1>',bakClick)
 
-
-
     # Start moving the characters
     move_characters()
 
-
     # ========================================
-
 
     gravity()
 
     window.bind("<Key>", start_move)
     window.bind("<KeyRelease>", stop_move)
-
-
-
-
 
 window.mainloop()

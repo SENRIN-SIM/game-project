@@ -32,8 +32,7 @@ interface_Image = PhotoImage(file="img/bg_Img1.png")
 bg_Image =PhotoImage(file="img/interface.png")
 hero_Image = PhotoImage(file="img/hero_right.png")
 heroimg_left = PhotoImage(file="img/hero_left.png")
-# hero_Image = PhotoImage(file="img/hero_right.png")
-# heroimg_left = PhotoImage(file="img/hero_left.png")
+
 bonla = PhotoImage(file="img/bonla-removebg.png")
 backclick = PhotoImage(file="img/singback_1-removebg-preview.png")
 door = PhotoImage(file="img/doors 1.png")
@@ -59,9 +58,6 @@ iland_goal = PhotoImage(file="imgGame2/floatgold.png")
 bom = PhotoImage(file="imgGame2/bom.png")
 mott = PhotoImage(file="imgGame2/icethorn.png")
 test = PhotoImage(file="imgGame2/test.png")
-
-    
-
 
 # ________________________interface_______________________
 
@@ -153,7 +149,6 @@ def startGame():
         character1 = canvas.create_image(x,160, image=trees2, tags="PLATFORM")
         x += trees2.width()
 
-
     canvas.create_image(1250, 430, image=land2, tags="PLATFORM" )
     canvas.create_image(1270, 325, image=trees)
     beers = canvas.create_image(1290,360, image=komnop, tags="beer")
@@ -163,22 +158,18 @@ def startGame():
 
     character2 = canvas.create_rectangle(500, 250, 560, 270, fill="orange", tags="PLATFORM", outline = "" )
 
-
     x = 410
     for i in range(25):
         denger = canvas.create_image(x, 640, image=bonla, tags="lost" )
         x += bonla.width()
     
-
 # ===========/
-    
 
     x=0
     for i in range(12):
         canvas.create_image(x, 680, image=wall2, tags="PLATFORM" )
         x += wall2.width()
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
-
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
         coord = canvas.coords(player)
@@ -192,7 +183,6 @@ def startGame():
         else:
             overlap = canvas.find_overlapping(coord[0], coord[1], coord[0]+direction_x, coord[1]+direction_y)
 
-
         coord = canvas.coords(player)
         coord = canvas.coords(denger)
         coord = canvas.coords(beers)
@@ -205,7 +195,7 @@ def startGame():
             if plf in overlap:
                 check_winner()
                 win_sond()
-                # winsound.PlaySound("sound\\opengame.wav", winsound.SND_ASYNC | winsound.SND_ASYNC)
+                
         for plf in wonner:
             if plf in overlap:
                 return False
@@ -263,18 +253,13 @@ def startGame():
     def drink_beer():
         canvas.itemconfig(beers,image=bonla)
         
-
 # _______________jump_______________________
 
     def jump(force):
         if force > 0:
             if check_movement(0, -force):
                 canvas.move(player, 0, -force)
-            window.after(TIMED_LOOP, jump, force- 2.5)
-            
-                
-            
-
+            window.after(TIMED_LOOP, jump, force- 2.5)     
 
     def start_move(event):
         if event.keysym not in keyPressed:
@@ -329,9 +314,6 @@ def startGame():
         # Schedule the next character movement
         canvas.after(100, move_characters)  # Adjust the delay as needed
 
-
-
-
 # __________________click to back_______________________
     def back_btn():
         canvas.create_image(100,50,image=backclick, tags='bak')
@@ -343,21 +325,15 @@ def startGame():
         click_sound()
     canvas.tag_bind('bak','<Button-1>',bakClick)
 
-
-
-
     # Start moving the characters
     move_characters()
 
-
     # ========================================
-
 
     gravity()
 
     window.bind("<Key>", start_move)
     window.bind("<KeyRelease>", stop_move)
-
 
 # __________________click to back_______________________
 
@@ -365,7 +341,6 @@ def startGame_2():
     canvas.create_image(600,320, image=bg_Image2)
     
     canvas.create_image(100,620, image=kos, tags="PLATFORM")
-
 
     canvas.create_image(340, 650, image=kos2, tags="PLATFORM" )
     canvas.create_image(530, 550, image=kos2, tags="PLATFORM" )
@@ -379,17 +354,14 @@ def startGame_2():
 
     canvas.create_image(1200,260, image=iland_goal, tags="PLATFORM")
 
-
     x = 0
     for i in range(30):
         denger = canvas.create_image(x, 800, image=trees, tags="lost" )
         x += bonla.width()
     
-
 # ===========/
     
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
-
 
     def check_movement(direction_x=0, direction_y=0, checkGround=False):
         coord = canvas.coords(player)
@@ -402,7 +374,6 @@ def startGame_2():
             overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] +hero_Image.width(), coord[1]+hero_Image.height())
         else:
             overlap = canvas.find_overlapping(coord[0], coord[1], coord[0]+direction_x, coord[1]+direction_y)
-
 
         coord = canvas.coords(player)
         coord = canvas.coords(denger)
@@ -469,7 +440,6 @@ def startGame_2():
     # _______________get beer3____________________
     def drink_beer():
         canvas.itemconfig(motts,image=mott)
-        
 
 # _______________jump_______________________
 
@@ -479,10 +449,6 @@ def startGame_2():
                 canvas.move(player, 0, -force)
             window.after(TIMED_LOOP, jump, force- 2.5)
             
-                
-            
-
-
     def start_move(event):
         if event.keysym not in keyPressed:
             keyPressed.append(event.keysym)
@@ -514,8 +480,6 @@ def startGame_2():
         if event.keysym in keyPressed:
             keyPressed.remove(event.keysym)
 
-
-
 # __________________click to back_______________________
     def back_btn():
         canvas.create_image(100,50,image=backclick, tags='bak')
@@ -529,15 +493,9 @@ def startGame_2():
 
     # ========================================
 
-
     gravity()
 
     window.bind("<Key>", start_move)
     window.bind("<KeyRelease>", stop_move)
-
-
-
-
-
 
 window.mainloop()
