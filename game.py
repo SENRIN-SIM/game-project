@@ -367,12 +367,12 @@ def startGame_2():
     canvas.create_image(100,620, image=kos, tags="PLATFORM")
 
 
-    canvas.create_image(340, 650, image=kos2, tags="PLATFORM" )
-    canvas.create_image(530, 550, image=kos2, tags="PLATFORM" )
-    canvas.create_image(730, 450, image=kos2, tags="PLATFORM" )
-    beers = canvas.create_image(700, 400, image=test, tags="beer")
+    # canvas.create_image(340, 650, image=kos2, tags="PLATFORM" )
+    canvas.create_image(500, 550, image=kos2, tags="PLATFORM" )
+    canvas.create_image(700, 450, image=kos2, tags="PLATFORM" )
+    beers = canvas.create_image(680, 400, image=test, tags="beer")
     # bomm = canvas.create_image(730, 350, image=bom)
-    motts = canvas.create_image(800, 400, image=bom, tags="lost")
+    motts = canvas.create_image(780, 400, image=bom, tags="lost")
     canvas.create_image(930, 350, image=kos2, tags="PLATFORM" )
 
     home = canvas.create_image(1275,150, image=daimon, tags="won" )
