@@ -341,7 +341,7 @@ def startGame_2():
         denger = canvas.create_image(x, 800, image=trees, tags="lost" )
         x += bonla.width()
     
-    # __________________player level2__________________________
+    # __________________player level 2__________________________
     player = canvas.create_image(10,10, image=hero_Image, anchor=NW)
 
     # ____________________check movement_______________________
